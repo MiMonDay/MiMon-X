@@ -1,0 +1,64 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/MiMonDay/Gui/main/Gui"))()
+
+local m = Library:Window("Main")
+
+m:Button("Teleport To The Middle", function()
+             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =     CFrame.new(-36.204097747802734, 12.371705055236816, 29.499849319458008)
+end)
+
+m:Toggle("Speed", function(v)
+if v then
+_G.Run = true
+while _G.Run do
+Game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 100
+wait()
+end
+else
+_G.Run = false
+Game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+end
+end)
+
+m:Toggle("Kill Boss Pickup Pistol", function(v)
+if v then
+_G.Kill = true
+while _G.Kill do
+local args = {
+    [1] = workspace.Boss.Boss.Humanoid,
+    [2] = 100000
+}
+game:GetService("Players").LocalPlayer.Character.Pistol.Remotes.TakeDamage:FireServer(unpack(args))
+wait(0.2)
+end
+else
+_G.Kill = false
+end
+end)
+
+m:Toggle("Inf Samples", function(v)
+if v then
+_G.Inf = true
+while _G.Inf do
+local args = {
+    [1] = 17,
+    [2] = Vector3.new(-1.4001795053482056, 2.273606300354004, -313.4538269042969)
+}
+game:GetService("ReplicatedStorage").Signals.RemoteEvents.GetWoolRemote:FireServer(unpack(args))
+wait()
+end
+else
+_G.Inf = false
+end
+end)
+
+m:Toggle("Auto Put Samples", function(v)
+if v then
+_G.Put = true
+while _G.Put do
+game:GetService("ReplicatedStorage").Signals.RemoteEvents.PutRemote:FireServer()
+wait()
+end
+else
+_G.Put = false
+end
+end)
